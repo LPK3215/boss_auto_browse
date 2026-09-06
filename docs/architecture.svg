@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2a4a"/>
+      <stop offset="100%" stop-color="#162040"/>
+    </linearGradient>
+    <linearGradient id="timerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a2040"/>
+      <stop offset="100%" stop-color="#2a1530"/>
+    </linearGradient>
+    <linearGradient id="browserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a3040"/>
+      <stop offset="100%" stop-color="#102030"/>
+    </linearGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e94560"/>
+    </marker>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5ce1e6"/>
+    </marker>
+  </defs>
+
+  <rect width="720" height="480" rx="12" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="360" y="34" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#e0e0e0" text-anchor="middle">
+    BOSS Auto Browse — Core Architecture
+  </text>
+
+  <!-- GUI Layer -->
+  <rect x="40" y="60" width="640" height="100" rx="10" fill="url(#boxGrad)" stroke="#e94560" stroke-width="1.5" opacity="0.95"/>
+  <text x="360" y="84" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#e94560" text-anchor="middle">GUI Layer (System.Windows.Forms)</text>
+  <text x="150" y="115" font-family="Segoe UI, sans-serif" font-size="11" fill="#c0c0d0" text-anchor="middle">Interval Input</text>
+  <text x="150" y="138" font-family="Segoe UI, sans-serif" font-size="10" fill="#808090" text-anchor="middle">default: 2 sec</text>
+  <text x="290" y="115" font-family="Segoe UI, sans-serif" font-size="11" fill="#c0c0d0" text-anchor="middle">Max Count Input</text>
+  <text x="290" y="138" font-family="Segoe UI, sans-serif" font-size="10" fill="#808090" text-anchor="middle">0 = unlimited</text>
+  <text x="430" y="115" font-family="Segoe UI, sans-serif" font-size="11" fill="#c0c0d0" text-anchor="middle">Status / Counter</text>
+  <text x="430" y="138" font-family="Segoe UI, sans-serif" font-size="10" fill="#808090" text-anchor="middle">Sent: N</text>
+  <text x="570" y="115" font-family="Segoe UI, sans-serif" font-size="11" fill="#c0c0d0" text-anchor="middle">Log List (max 200)</text>
+  <text x="570" y="138" font-family="Segoe UI, sans-serif" font-size="10" fill="#808090" text-anchor="middle">newest on top</text>
+
+  <!-- Start button -->
+  <rect x="560" y="180" width="100" height="36" rx="8" fill="#2ea44f" opacity="0.9"/>
+  <text x="610" y="203" font-family="Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">Start / Pause</text>
+  <line x1="560" y1="198" x2="530" y2="110" stroke="#2ea44f" stroke-width="2" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- Timer Core -->
+  <rect x="240" y="180" width="240" height="80" rx="10" fill="url(#timerGrad)" stroke="#e94560" stroke-width="1.5" opacity="0.95"/>
+  <text x="360" y="208" font-family="Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#e94560" text-anchor="middle">Timer.Tick (core loop)</text>
+  <text x="360" y="232" font-family="Segoe UI, sans-serif" font-size="10" fill="#a0a0c0" text-anchor="middle">every interval → find browser → activate → send key</text>
+  <text x="360" y="250" font-family="Segoe UI, sans-serif" font-size="10" fill="#707080" text-anchor="middle">6 browsers · 4 keywords</text>
+
+  <!-- Arrow: Start to Timer -->
+  <line x1="560" y1="218" x2="480" y2="218" stroke="#e94560" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Win32 API Layer -->
+  <rect x="40" y="190" width="170" height="60" rx="8" fill="url(#boxGrad)" stroke="#5ce1e6" stroke-width="1.5" opacity="0.9"/>
+  <text x="125" y="212" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#5ce1e6" text-anchor="middle">Win32 API (user32.dll)</text>
+  <text x="125" y="230" font-family="Segoe UI, sans-serif" font-size="9" fill="#9090a0" text-anchor="middle">GetForegroundWindow</text>
+  <text x="125" y="242" font-family="Segoe UI, sans-serif" font-size="9" fill="#9090a0" text-anchor="middle">ShowWindow · GetWindowThreadProcessId</text>
+
+  <!-- Arrow: Timer to Win32 -->
+  <line x1="240" y1="220" x2="210" y2="220" stroke="#5ce1e6" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#arrowhead2)"/>
+
+  <!-- Browser Detection -->
+  <rect x="40" y="290" width="640" height="70" rx="10" fill="url(#browserGrad)" stroke="#5ce1e6" stroke-width="1.5" opacity="0.9"/>
+  <text x="360" y="314" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#5ce1e6" text-anchor="middle">Browser Detection &amp; Activation</text>
+  <text x="100" y="338" font-family="Segoe UI, sans-serif" font-size="10" fill="#a0b0c0" text-anchor="middle">Get-TargetBrowserWindow</text>
+  <text x="290" y="338" font-family="Segoe UI, sans-serif" font-size="10" fill="#a0b0c0" text-anchor="middle">Activate-BrowserWindow</text>
+  <text x="480" y="338" font-family="Segoe UI, sans-serif" font-size="10" fill="#a0b0c0" text-anchor="middle">Confirm-KeySent</text>
+  <text x="630" y="338" font-family="Segoe UI, sans-serif" font-size="10" fill="#a0b0c0" text-anchor="middle">Get-ForegroundProcessName</text>
+
+  <!-- Arrow: Timer to Browser Detection -->
+  <line x1="360" y1="260" x2="360" y2="290" stroke="#e94560" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Key Send -->
+  <rect x="180" y="390" width="360" height="60" rx="10" fill="url(#boxGrad)" stroke="#e94560" stroke-width="1.5" opacity="0.95"/>
+  <text x="360" y="414" font-family="Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#e94560" text-anchor="middle">SendKeys::SendWait("{RIGHT}")</text>
+  <text x="360" y="434" font-family="Segoe UI, sans-serif" font-size="10" fill="#9090a0" text-anchor="middle">Simulates right arrow key press → switches candidate card</text>
+
+  <!-- Arrow: Browser Detection to Key Send -->
+  <line x1="360" y1="360" x2="360" y2="390" stroke="#e94560" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Browser icon (target) -->
+  <rect x="580" y="395" width="80" height="50" rx="6" fill="#013755" opacity="0.6" stroke="#5ce1e6" stroke-width="1"/>
+  <text x="620" y="415" font-family="Segoe UI, sans-serif" font-size="10" fill="#5ce1e6" text-anchor="middle">Browser</text>
+  <text x="620" y="432" font-family="Segoe UI, sans-serif" font-size="9" fill="#7080a0" text-anchor="middle">BOSS / zhipin</text>
+  <line x1="540" y1="420" x2="580" y2="420" stroke="#e94560" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Add-Log (side feedback) -->
+  <rect x="40" y="390" width="110" height="50" rx="6" fill="#1a1a2e" opacity="0.7" stroke="#6c5ce7" stroke-width="1"/>
+  <text x="95" y="410" font-family="Segoe UI, sans-serif" font-size="10" fill="#6c5ce7" text-anchor="middle">Add-Log</text>
+  <text x="95" y="427" font-family="Segoe UI, sans-serif" font-size="9" fill="#606080" text-anchor="middle">feedback to GUI</text>
+  <line x1="180" y1="420" x2="150" y2="415" stroke="#6c5ce7" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+</svg>

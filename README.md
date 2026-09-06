@@ -1,5 +1,17 @@
 # BOSS Auto Browse
 
+<p align="center">
+  <img src="./docs/banner.svg" alt="BOSS Auto Browse Banner" width="760" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/LPK3215/boss_auto_browse/releases"><img src="https://img.shields.io/badge/version-v1.0.0-e94560" alt="Version" /></a>
+  <a href="https://github.com/LPK3215/boss_auto_browse/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f" alt="License" /></a>
+  <a href="https://github.com/LPK3215/boss_auto_browse"><img src="https://img.shields.io/badge/platform-Windows-0078D4" alt="Platform" /></a>
+  <a href="https://github.com/LPK3215/boss_auto_browse"><img src="https://img.shields.io/badge/lang-PowerShell-013755" alt="Language" /></a>
+  <a href="https://github.com/LPK3215/boss_auto_browse"><img src="https://img.shields.io/badge/type-Open%20Source%20Toy-6c5ce7" alt="Type" /></a>
+</p>
+
 > 给女朋友做的一个便捷小工具，定时向浏览器发送右箭头键，自动切换 BOSS 直聘候选人卡片。
 
 ## 关于这个项目
@@ -7,6 +19,20 @@
 这是一个开源玩具。最初就是给女朋友做了一个在 BOSS 直聘上自动浏览候选人的小工具，顺手开源了。
 
 它没有什么重大意义，使用场景也很固定——就是定时按右箭头键而已。核心只有一个 PowerShell 脚本，逻辑简单，所以项目很好维护，也不会有什么大的变动。
+
+## 界面预览
+
+<p align="center">
+  <img src="./docs/gui_preview.svg" alt="GUI 界面示意图" width="500" />
+</p>
+
+<!-- TODO: 截图待补充 — 可运行程序后截取实际运行画面替换此 SVG -->
+
+## 核心架构
+
+<p align="center">
+  <img src="./docs/architecture.svg" alt="Core Architecture" width="720" />
+</p>
 
 ## 功能特性
 
@@ -52,9 +78,15 @@ powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1
 
 ```
 boss_auto_browse/
-├── boss_auto_browse_gui.ps1  # 主程序源码（PowerShell GUI 脚本）
+├── boss_auto_browse_gui.ps1  # 主程序源码（PowerShell GUI 脚本，246 行）
 ├── boss_auto_browse_gui.exe   # 编译版可执行文件
 ├── run.bat                    # 双击启动器
+├── docs/
+│   ├── banner.svg             # 项目横幅
+│   ├── architecture.svg       # 核心架构图
+│   ├── gui_preview.svg        # GUI 界面示意图
+│   └── scripts/
+│       └── generate_assets.py # SVG 生成脚本（可复用）
 ├── LICENSE                    # MIT 开源许可证
 ├── README.md                  # 项目说明文档
 ├── CONTRIBUTING.md            # 贡献指南
@@ -83,10 +115,6 @@ boss_auto_browse/
 | `Confirm-KeySent` | 确认按键发送后焦点仍在浏览器中 |
 | `Add-Log` | 向日志列表添加一条记录 |
 
-## 开源许可
-
-本项目基于 [MIT License](LICENSE) 开源，可自由使用、修改和分发。
-
 ## 常见问题
 
 见 [FAQ.md](FAQ.md)。
@@ -94,6 +122,16 @@ boss_auto_browse/
 ## 贡献
 
 项目很小，但欢迎提交 Issue 和 Pull Request。请先阅读 [贡献指南](CONTRIBUTING.md)。
+
+## 开源许可
+
+本项目基于 [MIT License](LICENSE) 开源，可自由使用、修改和分发。
+
+## 作者
+
+**LPK3215** · [GitHub](https://github.com/LPK3215) · 17538703215@163.com
+
+完整作者信息见 [AUTHORS](AUTHORS)。
 
 ## 免责声明
 

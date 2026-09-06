@@ -1,0 +1,23 @@
+# Build artifacts
+*.exe
+*.dll
+*.pdb
+
+# Temporary files
+*.tmp
+*.bak
+*_extracted_*.ps1
+_compare*.ps1
+_extract*.ps1
+_final_verify*.ps1
+
+# IDE
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store

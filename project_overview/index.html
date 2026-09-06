@@ -323,12 +323,14 @@
                   </details>
                 </div>
               </details>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>project_overview.html</code> <span class="tree-desc">全景观览页入口</span></div>
               <details>
                 <summary><span class="tree-icon">📂</span> project_overview/ <span class="tree-desc">全景观览页</span></summary>
                 <div class="tree-children">
                   <div class="tree-item"><span class="tree-icon">📄</span> <code>index.html</code></div>
                   <div class="tree-item"><span class="tree-icon">📄</span> <code>style.css</code></div>
                   <div class="tree-item"><span class="tree-icon">📄</span> <code>script.js</code></div>
+                  <div class="tree-item"><span class="tree-icon">🖼️</span> <code>project_card.html</code> <span class="tree-desc">项目名片长图</span></div>
                   <div class="tree-item"><span class="tree-icon">📂</span> <code>assets/</code></div>
                 </div>
               </details>
@@ -429,6 +431,22 @@
             <summary>工具会修改浏览器页面内容吗？</summary>
             <p>不会。工具仅模拟键盘按键（右箭头），不注入任何 JavaScript 或修改 DOM。</p>
           </details>
+          <details class="faq-item">
+            <summary>如何从源码编译 exe？</summary>
+            <p>使用 <a href="https://github.com/MScholtes/PS2EXE" target="_blank">PS2EXE</a> 模块：<code>Install-Module -Name ps2exe -Scope CurrentUser</code>，然后 <code>Invoke-PS2EXE -Input .\boss_auto_browse_gui.ps1 -Output .\boss_auto_browse_gui.exe -NoConsole</code>。</p>
+          </details>
+          <details class="faq-item">
+            <summary>杀毒软件/Windows Defender 报毒怎么办？</summary>
+            <p>由于 exe 由 PowerShell 脚本打包生成，部分杀毒软件可能误报。解决方法：① 使用源码运行 <code>.ps1</code> 不走 exe；② 在杀毒软件中添加信任；③ 从源码自行编译。</p>
+          </details>
+          <details class="faq-item">
+            <summary>可以同时运行多个实例吗？</summary>
+            <p>技术上可以，但不建议。多个实例会同时发送按键，可能导致目标浏览器窗口反复切换。如需在不同浏览器中使用，建议错开间隔时间或分时运行。</p>
+          </details>
+          <details class="faq-item">
+            <summary>程序闪退或没有界面？</summary>
+            <p>可能是 PowerShell 环境问题。尝试用 <code>run.bat</code> 启动；或在 PowerShell 中手动运行脚本查看报错信息；确保 .NET Framework 可用（System.Windows.Forms 依赖它）。</p>
+          </details>
         </div>
       </div>
     </section>
@@ -447,9 +465,13 @@
               <li>新增 FAQ.md、AUTHORS、.gitattributes</li>
               <li>新增 docs/ 可视化资产（banner、architecture、gui_preview SVG）</li>
               <li>新增 docs/scripts/generate_assets.py SVG 生成脚本</li>
-              <li>README 新增徽章和可视化展示</li>
-              <li>CONTRIBUTING 新增 Commit 规范</li>
-              <li>新增 project_overview/ 全景观览页</li>
+              <li>README 新增徽章和可视化展示、GitHub Stars 动态徽章</li>
+              <li>CONTRIBUTING 新增 Commit 规范、分支命名规范表</li>
+              <li>新增 project_overview/ 全景观览页（沉浸式项目仪表盘）</li>
+              <li>新增 project_overview/project_card.html 精简版项目名片长图（支持导出 PNG）</li>
+              <li>新增 project_overview.html 全景观览页入口文件</li>
+              <li>FAQ 新增编译 exe、杀毒报毒、多实例、闪退排查等 4 个问题</li>
+              <li>CONTRIBUTING 测试场景补充多浏览器和小数间隔场景</li>
             </ul>
           </div>
           <div class="cl-version">
@@ -496,7 +518,7 @@
           <a href="../FAQ.md" class="doc-card">
             <div class="doc-icon">❓</div>
             <h4>FAQ.md</h4>
-            <p>运行问题、浏览器支持、功能问答</p>
+            <p>运行问题、浏览器支持、编译与安全、功能问答</p>
           </a>
           <a href="../LICENSE" class="doc-card">
             <div class="doc-icon">📄</div>
@@ -507,6 +529,11 @@
             <div class="doc-icon">✍️</div>
             <h4>AUTHORS</h4>
             <p>作者信息与贡献者</p>
+          </a>
+          <a href="./project_card.html" class="doc-card">
+            <div class="doc-icon">🖼️</div>
+            <h4>项目名片</h4>
+            <p>精简版长图名片，一键导出 PNG 分享</p>
           </a>
         </div>
       </div>
@@ -525,7 +552,7 @@
             <p>项目很小，但欢迎提交 Issue 和 Pull Request。</p>
             <ul class="req-list">
               <li>Fork 仓库 → 创建分支 → 修改代码 → 提交 PR</li>
-              <li>Commit 规范：<code>feat:</code> / <code>fix:</code> / <code>docs:</code> / <code>refactor:</code></li>
+              <li>Commit 规范：<code>feat:</code> / <code>fix:</code> / <code>docs:</code> / <code>refactor:</code> / <code>chore:</code> / <code>style:</code></li>
               <li>函数名使用 <code>Verb-Noun</code> 格式</li>
               <li>变量名使用 camelCase，脚本级变量用 <code>$script:</code> 前缀</li>
             </ul>

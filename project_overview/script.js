@@ -54,17 +54,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Theme Toggle ---
+  // --- Theme Toggle with localStorage persistence ---
   const themeToggle = document.getElementById('themeToggle');
   const html = document.documentElement;
-  // Check system preference on first load
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+  const STORAGE_KEY = 'boss-auto-browse-theme';
+
+  // Priority: localStorage > system preference > default dark
+  const savedTheme = localStorage.getItem(STORAGE_KEY);
+  if (savedTheme) {
+    html.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
     html.setAttribute('data-theme', 'light');
   }
+
+  // Set initial icon based on current theme
+  const initIcon = themeToggle.querySelector('[data-lucide]');
+  if (initIcon) {
+    const currentTheme = html.getAttribute('data-theme') || 'dark';
+    initIcon.setAttribute('data-lucide', currentTheme === 'dark' ? 'moon' : 'sun');
+    if (window.lucide) lucide.createIcons();
+  }
+
   themeToggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
+    const current = html.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
     // Update icon
     const icon = themeToggle.querySelector('[data-lucide]');
     if (icon) {

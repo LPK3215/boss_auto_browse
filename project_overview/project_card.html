@@ -99,6 +99,8 @@
   /* License */
   .license { text-align: center; padding: 24px 48px; background: #161b22; }
   .license p { font-size: 13px; color: #7d8590; }
+  .license a { color: #5ce1e6; text-decoration: none; }
+  .license a:hover { text-decoration: underline; }
 
   /* Action buttons */
   #actions {
@@ -230,14 +232,15 @@
 
   <!-- LICENSE -->
   <div class="license">
-    <p>MIT License © 2026 LPK3215 · <span style="color:#e94560;">Open Source Toy</span> · GitHub: @LPK3215</p>
+    <p>MIT License © 2026 LPK3215 · <span style="color:#e94560;">Open Source Toy</span></p>
+    <p style="margin-top:6px;">GitHub: <a href="https://github.com/LPK3215/boss_auto_browse" target="_blank">@LPK3215/boss_auto_browse</a></p>
   </div>
 
 </div>
 
 <!-- Action Buttons (hidden during export) -->
 <div id="actions">
-  <button class="btn btn-export" onclick="exportPNG()">📄 导出为图片</button>
+  <button class="btn btn-export" id="exportBtn" onclick="exportPNG()">📄 导出为图片</button>
   <a href="./index.html" class="btn btn-link">🔗 打开完整版</a>
 </div>
 
@@ -254,11 +257,17 @@
     var content = document.getElementById('card-content');
     var actions = document.getElementById('actions');
     var tip = document.getElementById('save-tip');
+    var btn = document.getElementById('exportBtn');
 
     if (!window.html2canvas) {
       alert('导出库加载失败，请使用浏览器截图工具（F12 → 截图）或系统截图。');
       return;
     }
+
+    // Loading state
+    var originalText = btn.textContent;
+    btn.textContent = '⏳ 正在生成...';
+    btn.disabled = true;
 
     // Hide buttons
     actions.style.display = 'none';
@@ -276,6 +285,8 @@
     }).then(function(canvas) {
       // Show buttons again
       actions.style.display = 'flex';
+      btn.textContent = originalText;
+      btn.disabled = false;
 
       // Download
       var link = document.createElement('a');
@@ -288,6 +299,8 @@
       setTimeout(function() { tip.classList.remove('show'); }, 2500);
     }).catch(function(err) {
       actions.style.display = 'flex';
+      btn.textContent = originalText;
+      btn.disabled = false;
       alert('导出失败：' + err.message + '\n请使用浏览器截图工具替代。');
     });
   }

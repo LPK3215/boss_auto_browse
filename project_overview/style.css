@@ -269,6 +269,19 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .kw { color: #ff7b72; } .fn { color: #d2a8ff; } .var { color: #79c0ff; }
 .cls { color: #ffa657; } .cmd { color: #7ee787; } .num { color: #79c0ff; }
 
+/* Light theme code highlight overrides */
+[data-theme="light"] .kw { color: #cf222e; }
+[data-theme="light"] .fn { color: #8250df; }
+[data-theme="light"] .var { color: #0550ae; }
+[data-theme="light"] .cls { color: #953800; }
+[data-theme="light"] .cmd { color: #116329; }
+[data-theme="light"] .num { color: #0550ae; }
+[data-theme="light"] .code-block { background: #f6f8fa; }
+[data-theme="light"] .code-header { background: rgba(0,0,0,0.04); }
+[data-theme="light"] .dot.red { background: #ff5f57; } 
+[data-theme="light"] .dot.yellow { background: #ffbd2e; }
+[data-theme="light"] .dot.green { background: #28c840; }
+
 /* Tree */
 .tree { font-family: var(--font-mono); font-size: 14px; }
 .tree details { margin-left: 20px; }
@@ -316,6 +329,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .faq-list { display: flex; flex-direction: column; gap: 8px; }
 .faq-item { border: 1px solid var(--card-border); border-radius: var(--radius-sm); overflow: hidden; }
 .faq-item summary { padding: 14px 16px; cursor: pointer; font-weight: 500; font-size: 15px; transition: background 0.2s; list-style: none; display: flex; align-items: center; }
+.faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::before { content: "▸"; margin-right: 8px; color: var(--accent); transition: transform 0.2s; }
 .faq-item[open] summary::before { transform: rotate(90deg); }
 .faq-item summary:hover { background: var(--bg-tertiary); }

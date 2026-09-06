@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=800">
+<title>BOSS Auto Browse · 项目名片</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #1a1a2e;
+    display: flex; justify-content: center; padding: 40px 0;
+  }
+  #card-content {
+    width: 800px; background: #0d1117;
+    color: #e6edf3; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 40%, #0f3460 100%);
+    padding: 48px 48px 40px; text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -60px; left: -60px;
+    width: 250px; height: 250px; border-radius: 50%;
+    background: #e94560; filter: blur(80px); opacity: 0.15;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -40px; right: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: #5ce1e6; filter: blur(70px); opacity: 0.1;
+  }
+  .hero-badges { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; position: relative; }
+  .badge {
+    padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid;
+  }
+  .badge-ver { background: #e94560; color: #fff; border-color: #e94560; }
+  .badge-lang { background: rgba(1,55,85,0.9); color: #fff; border-color: #013755; }
+  .badge-toy { background: rgba(108,92,231,0.9); color: #fff; border-color: #6c5ce7; }
+  .hero-title {
+    font-size: 48px; font-weight: 800; margin-bottom: 12px;
+    background: linear-gradient(135deg, #e94560 0%, #5ce1e6 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; position: relative;
+  }
+  .hero-sub { font-size: 16px; color: #b1bac4; max-width: 600px; margin: 0 auto; position: relative; }
+
+  /* Section base */
+  .section { padding: 32px 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .section-title { font-size: 14px; font-weight: 700; color: #5ce1e6; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+  .section p { font-size: 15px; color: #b1bac4; line-height: 1.8; }
+
+  /* Value props */
+  .value-props p { margin-bottom: 8px; }
+  .value-props strong { color: #e6edf3; }
+
+  /* Architecture */
+  .arch-svg-wrap { background: #161b22; border-radius: 12px; padding: 16px; border: 1px solid rgba(255,255,255,0.08); }
+  .arch-svg-wrap svg { width: 100%; height: auto; display: block; }
+
+  /* Tech stack pills */
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 500;
+    background: #1c2128; border: 1px solid rgba(255,255,255,0.1); color: #5ce1e6;
+  }
+  .pill.accent { border-color: #e94560; color: #e94560; }
+
+  /* Feature highlights */
+  .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hl-item {
+    padding: 12px 16px; background: #1c2128; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 8px;
+  }
+  .hl-icon { font-size: 18px; flex-shrink: 0; }
+  .hl-text { font-size: 14px; color: #e6edf3; font-weight: 500; }
+
+  /* Key metrics */
+  .metrics { display: flex; gap: 16px; }
+  .metric {
+    flex: 1; text-align: center; padding: 20px 12px;
+    background: #1c2128; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .metric-num { font-size: 36px; font-weight: 800; color: #e94560; }
+  .metric-label { font-size: 13px; color: #7d8590; margin-top: 4px; }
+
+  /* Quick start */
+  .code-block {
+    background: #161b22; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 14px 18px;
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 13px;
+    color: #7ee787; margin-top: 8px;
+  }
+  .code-block .comment { color: #7d8590; }
+
+  /* License */
+  .license { text-align: center; padding: 24px 48px; background: #161b22; }
+  .license p { font-size: 13px; color: #7d8590; }
+
+  /* Action buttons */
+  #actions {
+    display: flex; gap: 12px; justify-content: center;
+    padding: 24px; background: #1a1a2e;
+  }
+  .btn {
+    padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-export { background: #e94560; color: #fff; }
+  .btn-link { background: #1c2128; color: #5ce1e6; border: 1px solid rgba(255,255,255,0.15); }
+  #save-tip {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: #2ea44f; color: #fff; padding: 10px 20px;
+    border-radius: 8px; font-size: 14px; font-weight: 600;
+    opacity: 0; transition: opacity 0.3s; z-index: 9999;
+  }
+  #save-tip.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div id="save-tip">✅ 已保存到下载文件夹</div>
+
+<div id="card-content">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badges">
+      <span class="badge badge-ver">v1.0.0</span>
+      <span class="badge badge-lang">PowerShell</span>
+      <span class="badge badge-toy">Open Source Toy</span>
+    </div>
+    <h1 class="hero-title">BOSS Auto Browse</h1>
+    <p class="hero-sub">给女朋友做的一个便捷小工具，定时向浏览器发送右箭头键，自动切换 BOSS 直聘候选人卡片。</p>
+  </div>
+
+  <!-- VALUE PROPS -->
+  <div class="section value-props">
+    <div class="section-title">关于这个项目</div>
+    <p>这是一个<strong>开源玩具</strong>。给女朋友做的 BOSS 直聘自动浏览工具，顺手开源了。</p>
+    <p>使用场景很固定——就是定时按右箭头键。核心只有一个 PowerShell 脚本，逻辑简单，很好维护。</p>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="section">
+    <div class="section-title">核心架构</div>
+    <div class="arch-svg-wrap">
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- GUI Layer -->
+        <rect x="20" y="10" width="660" height="50" rx="10" fill="#1e2a4a" stroke="#e94560" stroke-width="1.5"/>
+        <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#e94560" font-family="sans-serif">GUI Layer (System.Windows.Forms)</text>
+        <text x="350" y="46" text-anchor="middle" font-size="11" fill="#b1bac4" font-family="sans-serif">Interval · Max Count · Status · Log List</text>
+        <!-- Arrow -->
+        <path d="M350 62 L350 78" stroke="#e94560" stroke-width="2" marker-end="url(#a)"/>
+        <!-- Timer -->
+        <rect x="180" y="80" width="340" height="45" rx="10" fill="#3a2040" stroke="#e94560" stroke-width="1.5"/>
+        <text x="350" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#e94560" font-family="sans-serif">Timer.Tick (core loop)</text>
+        <text x="350" y="116" text-anchor="middle" font-size="10" fill="#b1bac4" font-family="sans-serif">find browser → activate → send key → confirm</text>
+        <!-- Arrow -->
+        <path d="M350 127 L350 143" stroke="#e94560" stroke-width="2" marker-end="url(#a)"/>
+        <!-- Browser Detection -->
+        <rect x="20" y="145" width="660" height="45" rx="10" fill="#1a3040" stroke="#5ce1e6" stroke-width="1.5"/>
+        <text x="350" y="165" text-anchor="middle" font-size="13" font-weight="700" fill="#5ce1e6" font-family="sans-serif">Browser Detection &amp; Activation</text>
+        <text x="350" y="180" text-anchor="middle" font-size="10" fill="#b1bac4" font-family="sans-serif">6 browsers · 4 keywords · Win32 API</text>
+        <!-- Arrow -->
+        <path d="M350 192 L350 208" stroke="#e94560" stroke-width="2" marker-end="url(#a)"/>
+        <!-- SendKeys -->
+        <rect x="150" y="210" width="400" height="40" rx="10" fill="#1e2a4a" stroke="#e94560" stroke-width="1.5"/>
+        <text x="350" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#e94560" font-family="sans-serif">SendKeys::SendWait("{RIGHT}")</text>
+        <text x="350" y="240" text-anchor="middle" font-size="10" fill="#7d8590" font-family="sans-serif">→ switches candidate card on BOSS / zhipin</text>
+        <!-- Arrow marker -->
+        <defs>
+          <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e94560"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="section">
+    <div class="section-title">技术栈</div>
+    <div class="pills">
+      <span class="pill accent">PowerShell</span>
+      <span class="pill">System.Windows.Forms</span>
+      <span class="pill">Win32 API (user32.dll)</span>
+      <span class="pill">SendKeys</span>
+      <span class="pill">WScript.Shell COM</span>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="section">
+    <div class="section-title">核心亮点</div>
+    <div class="highlights">
+      <div class="hl-item"><span class="hl-icon">⏱️</span><span class="hl-text">定时自动发送右箭头键</span></div>
+      <div class="hl-item"><span class="hl-icon">🌐</span><span class="hl-text">支持 6 种主流浏览器</span></div>
+      <div class="hl-item"><span class="hl-icon">🎯</span><span class="hl-text">智能定位 BOSS 窗口</span></div>
+      <div class="hl-item"><span class="hl-icon">⏯️</span><span class="hl-text">暂停/恢复/停止全控制</span></div>
+    </div>
+  </div>
+
+  <!-- KEY METRICS -->
+  <div class="section">
+    <div class="section-title">关键指标</div>
+    <div class="metrics">
+      <div class="metric"><div class="metric-num">246</div><div class="metric-label">行源码</div></div>
+      <div class="metric"><div class="metric-num">6</div><div class="metric-label">支持浏览器</div></div>
+      <div class="metric"><div class="metric-num">5</div><div class="metric-label">核心函数</div></div>
+      <div class="metric"><div class="metric-num">200</div><div class="metric-label">日志上限</div></div>
+    </div>
+  </div>
+
+  <!-- QUICK START -->
+  <div class="section">
+    <div class="section-title">快速开始</div>
+    <p>双击 <code style="color:#5ce1e6;background:#1c2128;padding:2px 6px;border-radius:4px;">run.bat</code> 即可启动，或命令行运行：</p>
+    <div class="code-block">
+      <span class="comment"># 克隆并运行</span><br>
+      powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1
+    </div>
+  </div>
+
+  <!-- LICENSE -->
+  <div class="license">
+    <p>MIT License © 2026 LPK3215 · <span style="color:#e94560;">Open Source Toy</span> · GitHub: @LPK3215</p>
+  </div>
+
+</div>
+
+<!-- Action Buttons (hidden during export) -->
+<div id="actions">
+  <button class="btn btn-export" onclick="exportPNG()">📄 导出为图片</button>
+  <a href="./index.html" class="btn btn-link">🔗 打开完整版</a>
+</div>
+
+<script>
+  // Warm up html2canvas
+  if (window.html2canvas) {
+    document.addEventListener('DOMContentLoaded', function() {
+      // Preload by creating a tiny offscreen canvas
+      try { html2canvas(document.createElement('div'), {scale:1}); } catch(e) {}
+    });
+  }
+
+  function exportPNG() {
+    var content = document.getElementById('card-content');
+    var actions = document.getElementById('actions');
+    var tip = document.getElementById('save-tip');
+
+    if (!window.html2canvas) {
+      alert('导出库加载失败，请使用浏览器截图工具（F12 → 截图）或系统截图。');
+      return;
+    }
+
+    // Hide buttons
+    actions.style.display = 'none';
+
+    var date = new Date();
+    var dateStr = date.getFullYear() + '-' +
+      String(date.getMonth()+1).padStart(2,'0') + '-' +
+      String(date.getDate()).padStart(2,'0');
+
+    html2canvas(content, {
+      scrollY: -window.scrollY,
+      useCORS: true,
+      scale: 2,
+      backgroundColor: '#0d1117'
+    }).then(function(canvas) {
+      // Show buttons again
+      actions.style.display = 'flex';
+
+      // Download
+      var link = document.createElement('a');
+      link.download = 'BOSS_Auto_Browse_card_' + dateStr + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+
+      // Show tip
+      tip.classList.add('show');
+      setTimeout(function() { tip.classList.remove('show'); }, 2500);
+    }).catch(function(err) {
+      actions.style.display = 'flex';
+      alert('导出失败：' + err.message + '\n请使用浏览器截图工具替代。');
+    });
+  }
+</script>
+
+<!-- Generated: 2026-09-06 · Tool: CatPaw AI -->
+</body>
+</html>

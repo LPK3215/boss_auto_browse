@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOSS Auto Browse · 项目全景观览</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <nav id="navbar" class="navbar glass">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="nav-logo">→</span>
+        <span class="nav-title">BOSS Auto Browse</span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#hero" class="nav-link active">概览</a>
+        <a href="#about" class="nav-link">简介</a>
+        <a href="#architecture" class="nav-link">架构</a>
+        <a href="#techstack" class="nav-link">技术栈</a>
+        <a href="#functions" class="nav-link">核心函数</a>
+        <a href="#structure" class="nav-link">目录</a>
+        <a href="#quickstart" class="nav-link">快速开始</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#changelog" class="nav-link">更新</a>
+        <a href="#docs" class="nav-link">文档</a>
+      </div>
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" title="切换主题">
+          <i data-lucide="moon"></i>
+        </button>
+        <button id="menuToggle" class="menu-toggle" title="菜单">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobileNav" class="mobile-nav">
+    <a href="#hero" class="nav-link">概览</a>
+    <a href="#about" class="nav-link">简介</a>
+    <a href="#architecture" class="nav-link">架构</a>
+    <a href="#techstack" class="nav-link">技术栈</a>
+    <a href="#functions" class="nav-link">核心函数</a>
+    <a href="#structure" class="nav-link">目录</a>
+    <a href="#quickstart" class="nav-link">快速开始</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#changelog" class="nav-link">更新</a>
+    <a href="#docs" class="nav-link">文档</a>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <div class="hero-glow glow-1"></div>
+        <div class="hero-glow glow-2"></div>
+        <div class="hero-glow glow-3"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badges">
+          <span class="badge badge-version">v1.0.0</span>
+          <span class="badge badge-lang">PowerShell</span>
+          <span class="badge badge-platform">Windows</span>
+          <span class="badge badge-license">MIT</span>
+          <span class="badge badge-toy">Open Source Toy</span>
+        </div>
+        <h1 class="hero-title">BOSS Auto Browse</h1>
+        <p class="hero-subtitle">给女朋友做的一个便捷小工具，定时向浏览器发送右箭头键，自动切换 BOSS 直聘候选人卡片。</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num" data-target="246">0</span>
+            <span class="stat-label">行源码</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num" data-target="6">0</span>
+            <span class="stat-label">支持浏览器</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num" data-target="5">0</span>
+            <span class="stat-label">核心函数</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num" data-target="200">0</span>
+            <span class="stat-label">日志上限</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="#quickstart" class="btn btn-primary">快速开始</a>
+          <a href="#architecture" class="btn btn-ghost">查看架构</a>
+        </div>
+      </div>
+      <div class="hero-arrow">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+          <path d="M26 26 L54 40 L26 54 L34 40 Z" fill="currentColor" opacity="0.8"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="section-header">
+        <span class="section-icon">📖</span>
+        <h2 class="section-title">关于这个项目</h2>
+      </div>
+      <div class="card glass">
+        <p>这是一个<strong>开源玩具</strong>。最初就是给女朋友做了一个在 BOSS 直聘上自动浏览候选人的小工具，顺手开源了。</p>
+        <p>它没有什么重大意义，使用场景也很固定——就是定时按右箭头键而已。核心只有一个 PowerShell 脚本，逻辑简单，所以项目很好维护，也不会有什么大的变动。</p>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon">⏱️</div>
+            <h4>定时自动按键</h4>
+            <p>按设定间隔（默认 2 秒）自动发送 → 右箭头键</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌐</div>
+            <h4>多浏览器支持</h4>
+            <p>Chrome、Edge、Firefox、Brave、Opera、Tabbit</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🎯</div>
+            <h4>智能窗口定位</h4>
+            <p>优先激活标题含 BOSS/zhipin 关键词的浏览器窗口</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚙️</div>
+            <h4>可配置参数</h4>
+            <p>自定义间隔时间和最大发送次数（0 = 无限）</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📋</div>
+            <h4>实时日志</h4>
+            <p>GUI 内嵌日志列表，最多保留 200 条</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⏯️</div>
+            <h4>暂停/恢复/停止</h4>
+            <p>运行中可随时暂停、恢复或停止并重置</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section id="architecture" class="section">
+      <div class="section-header">
+        <span class="section-icon">🏗️</span>
+        <h2 class="section-title">核心架构</h2>
+      </div>
+      <div class="card glass">
+        <div class="arch-diagram">
+          <svg viewBox="0 0 720 420" class="arch-svg" xmlns="http://www.w3.org/2000/svg">
+            <rect x="30" y="20" width="660" height="90" rx="12" fill="var(--arch-gui-bg)" stroke="var(--accent)" stroke-width="1.5" class="arch-node" data-tooltip="GUI Layer: Interval 输入框、Max Count 输入框、Status/Count 标签、Log List 日志列表"/>
+            <text x="360" y="48" text-anchor="middle" font-size="14" font-weight="700" fill="var(--accent)" font-family="Inter, sans-serif">GUI Layer (System.Windows.Forms)</text>
+            <text x="140" y="76" text-anchor="middle" font-size="11" fill="var(--text-secondary)" font-family="Inter, sans-serif">Interval Input</text>
+            <text x="140" y="94" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="Inter, sans-serif">default: 2 sec</text>
+            <text x="300" y="76" text-anchor="middle" font-size="11" fill="var(--text-secondary)" font-family="Inter, sans-serif">Max Count</text>
+            <text x="300" y="94" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="Inter, sans-serif">0 = unlimited</text>
+            <text x="470" y="76" text-anchor="middle" font-size="11" fill="var(--text-secondary)" font-family="Inter, sans-serif">Status / Counter</text>
+            <text x="470" y="94" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="Inter, sans-serif">Sent: N</text>
+            <text x="610" y="76" text-anchor="middle" font-size="11" fill="var(--text-secondary)" font-family="Inter, sans-serif">Log List</text>
+            <text x="610" y="94" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="Inter, sans-serif">max 200</text>
+            <path d="M360 112 L360 138" stroke="var(--accent)" stroke-width="2" marker-end="url(#arr)"/>
+            <rect x="220" y="140" width="280" height="70" rx="12" fill="var(--arch-timer-bg)" stroke="var(--accent)" stroke-width="1.5" class="arch-node" data-tooltip="Timer.Tick 核心循环: find browser → activate → send key → confirm"/>
+            <text x="360" y="168" text-anchor="middle" font-size="14" font-weight="700" fill="var(--accent)" font-family="Inter, sans-serif">Timer.Tick (core loop)</text>
+            <text x="360" y="188" text-anchor="middle" font-size="11" fill="var(--text-secondary)" font-family="Inter, sans-serif">find browser → activate → send key → confirm</text>
+            <text x="360" y="202" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="Inter, sans-serif">6 browsers · 4 keywords</text>
+            <rect x="30" y="150" width="170" height="50" rx="8" fill="var(--arch-win32-bg)" stroke="var(--cyan)" stroke-width="1.5" class="arch-node" data-tooltip="Win32 API: user32.dll — GetForegroundWindow, ShowWindow"/>
+            <text x="115" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="var(--cyan)" font-family="Inter, sans-serif">Win32 API (user32.dll)</text>
+            <text x="115" y="190" text-anchor="middle" font-size="9" fill="var(--text-muted)" font-family="Inter, sans-serif">GetForegroundWindow · ShowWindow</text>
+            <path d="M220 175 L200 175" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-cyan)"/>
+            <path d="M360 212 L360 238" stroke="var(--accent)" stroke-width="2" marker-end="url(#arr)"/>
+            <rect x="30" y="240" width="660" height="60" rx="12" fill="var(--arch-browser-bg)" stroke="var(--cyan)" stroke-width="1.5" class="arch-node" data-tooltip="Browser Detection: Get-TargetBrowserWindow → Activate → Confirm → Get-ForegroundProcessName"/>
+            <text x="360" y="264" text-anchor="middle" font-size="13" font-weight="700" fill="var(--cyan)" font-family="Inter, sans-serif">Browser Detection &amp; Activation</text>
+            <text x="100" y="285" text-anchor="middle" font-size="10" fill="var(--text-secondary)" font-family="Inter, sans-serif">Get-TargetBrowserWindow</text>
+            <text x="300" y="285" text-anchor="middle" font-size="10" fill="var(--text-secondary)" font-family="Inter, sans-serif">Activate-BrowserWindow</text>
+            <text x="470" y="285" text-anchor="middle" font-size="10" fill="var(--text-secondary)" font-family="Inter, sans-serif">Confirm-KeySent</text>
+            <text x="620" y="285" text-anchor="middle" font-size="10" fill="var(--text-secondary)" font-family="Inter, sans-serif">Get-ForegroundProcessName</text>
+            <path d="M360 302 L360 328" stroke="var(--accent)" stroke-width="2" marker-end="url(#arr)"/>
+            <rect x="160" y="330" width="340" height="55" rx="12" fill="var(--arch-gui-bg)" stroke="var(--accent)" stroke-width="1.5" class="arch-node" data-tooltip="SendKeys::SendWait 模拟右箭头键"/>
+            <text x="330" y="354" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)" font-family="Inter, sans-serif">SendKeys::SendWait("{RIGHT}")</text>
+            <text x="330" y="372" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="Inter, sans-serif">Simulates right arrow → switches candidate card</text>
+            <rect x="540" y="335" width="120" height="45" rx="8" fill="var(--arch-win32-bg)" stroke="var(--cyan)" stroke-width="1" opacity="0.7"/>
+            <text x="600" y="355" text-anchor="middle" font-size="11" fill="var(--cyan)" font-family="Inter, sans-serif">Browser</text>
+            <text x="600" y="370" text-anchor="middle" font-size="9" fill="var(--text-muted)" font-family="Inter, sans-serif">BOSS / zhipin</text>
+            <path d="M500 357 L540 357" stroke="var(--accent)" stroke-width="2" marker-end="url(#arr)"/>
+            <rect x="30" y="335" width="100" height="45" rx="8" fill="var(--card-bg)" stroke="var(--purple)" stroke-width="1" opacity="0.8"/>
+            <text x="80" y="355" text-anchor="middle" font-size="10" fill="var(--purple)" font-family="Inter, sans-serif">Add-Log</text>
+            <text x="80" y="370" text-anchor="middle" font-size="9" fill="var(--text-muted)" font-family="Inter, sans-serif">feedback</text>
+            <defs>
+              <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="var(--accent)"/>
+              </marker>
+              <marker id="arr-cyan" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="var(--cyan)"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section id="techstack" class="section">
+      <div class="section-header">
+        <span class="section-icon">🔧</span>
+        <h2 class="section-title">技术栈</h2>
+      </div>
+      <div class="card glass">
+        <table class="tech-table">
+          <thead>
+            <tr><th>类别</th><th>技术</th><th>用途</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>语言</td><td><code>PowerShell</code></td><td>核心逻辑与 GUI 构建</td></tr>
+            <tr><td>GUI 框架</td><td><code>System.Windows.Forms</code> + <code>System.Drawing</code></td><td>窗口、控件、布局</td></tr>
+            <tr><td>Win32 API</td><td><code>user32.dll</code> (P/Invoke)</td><td>窗口激活与焦点检测</td></tr>
+            <tr><td>按键模拟</td><td><code>SendKeys::SendWait("{RIGHT}")</code></td><td>模拟右箭头键</td></tr>
+            <tr><td>窗口激活</td><td><code>WScript.Shell</code> COM</td><td>AppActivate 方法激活进程</td></tr>
+            <tr><td>启动器</td><td><code>run.bat</code></td><td>双击运行 PowerShell 脚本</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CORE FUNCTIONS -->
+    <section id="functions" class="section">
+      <div class="section-header">
+        <span class="section-icon">📐</span>
+        <h2 class="section-title">核心函数</h2>
+      </div>
+      <div class="card glass">
+        <div class="func-grid">
+          <div class="func-card">
+            <div class="func-header">
+              <span class="func-name">Get-ForegroundProcessName</span>
+              <span class="func-line">L26</span>
+            </div>
+            <p class="func-desc">获取当前前台窗口对应的进程名。通过 Win32 API GetForegroundWindow + GetWindowThreadProcessId 实现。</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <button class="copy-btn" data-code="Get-ForegroundProcessName">复制</button>
+              </div>
+              <pre><code><span class="kw">function</span> <span class="fn">Get-ForegroundProcessName</span> {
+    <span class="var">$hwnd</span> = [<span class="cls">BossAutoWin32</span>]::GetForegroundWindow()
+    <span class="kw">if</span> (<span class="var">$hwnd</span> -eq [<span class="cls">IntPtr</span>]::Zero) { <span class="kw">return</span> <span class="var">$null</span> }
+    <span class="var">$pidValue</span> = <span class="num">0</span>
+    [<span class="kw">void</span>][<span class="cls">BossAutoWin32</span>]::GetWindowThreadProcessId(<span class="var">$hwnd</span>, [<span class="kw">ref</span>]<span class="var">$pidValue</span>)
+    <span class="kw">if</span> (<span class="var">$pidValue</span> -eq <span class="num">0</span>) { <span class="kw">return</span> <span class="var">$null</span> }
+    <span class="kw">try</span> { <span class="kw">return</span> (<span class="cmd">Get-Process</span> -Id <span class="var">$pidValue</span>).ProcessName } <span class="kw">catch</span> { <span class="kw">return</span> <span class="var">$null</span> }
+}</code></pre>
+            </div>
+          </div>
+          <div class="func-card">
+            <div class="func-header">
+              <span class="func-name">Get-TargetBrowserWindow</span>
+              <span class="func-line">L46</span>
+            </div>
+            <p class="func-desc">查找 BOSS 直聘相关的浏览器窗口。遍历 6 种浏览器进程，优先匹配标题含 BOSS/zhipin 的窗口，否则 fallback 到任意浏览器。</p>
+          </div>
+          <div class="func-card">
+            <div class="func-header">
+              <span class="func-name">Activate-BrowserWindow</span>
+              <span class="func-line">L60</span>
+            </div>
+            <p class="func-desc">激活目标浏览器窗口到前台。ShowWindow + AppActivate，两次延迟确认（300ms + 500ms），确保焦点获取成功。</p>
+          </div>
+          <div class="func-card">
+            <div class="func-header">
+              <span class="func-name">Confirm-KeySent</span>
+              <span class="func-line">L71</span>
+            </div>
+            <p class="func-desc">确认按键发送后焦点仍在浏览器中。检查前台进程是否在 $allowedBrowsers 列表中。</p>
+          </div>
+          <div class="func-card">
+            <div class="func-header">
+              <span class="func-name">Add-Log</span>
+              <span class="func-line">L76</span>
+            </div>
+            <p class="func-desc">向日志列表添加一条记录。新日志插入顶部（Insert(0)），超过 200 条时从底部移除旧日志。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIRECTORY STRUCTURE -->
+    <section id="structure" class="section">
+      <div class="section-header">
+        <span class="section-icon">📁</span>
+        <h2 class="section-title">目录结构</h2>
+      </div>
+      <div class="card glass">
+        <div class="tree">
+          <details open>
+            <summary><span class="tree-icon">📂</span> boss_auto_browse/</summary>
+            <div class="tree-children">
+              <div class="tree-item"><span class="tree-icon">📜</span> <code>boss_auto_browse_gui.ps1</code> <span class="tree-desc">主程序源码（246 行）</span></div>
+              <div class="tree-item"><span class="tree-icon">⚙️</span> <code>boss_auto_browse_gui.exe</code> <span class="tree-desc">编译版可执行文件</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>run.bat</code> <span class="tree-desc">双击启动器</span></div>
+              <details>
+                <summary><span class="tree-icon">📂</span> docs/ <span class="tree-desc">可视化资产</span></summary>
+                <div class="tree-children">
+                  <div class="tree-item"><span class="tree-icon">🎨</span> <code>banner.svg</code> <span class="tree-desc">项目横幅</span></div>
+                  <div class="tree-item"><span class="tree-icon">🎨</span> <code>architecture.svg</code> <span class="tree-desc">核心架构图</span></div>
+                  <div class="tree-item"><span class="tree-icon">🎨</span> <code>gui_preview.svg</code> <span class="tree-desc">GUI 界面示意图</span></div>
+                  <details>
+                    <summary><span class="tree-icon">📂</span> scripts/</summary>
+                    <div class="tree-children">
+                      <div class="tree-item"><span class="tree-icon">🐍</span> <code>generate_assets.py</code> <span class="tree-desc">SVG 生成脚本</span></div>
+                    </div>
+                  </details>
+                </div>
+              </details>
+              <details>
+                <summary><span class="tree-icon">📂</span> project_overview/ <span class="tree-desc">全景观览页</span></summary>
+                <div class="tree-children">
+                  <div class="tree-item"><span class="tree-icon">📄</span> <code>index.html</code></div>
+                  <div class="tree-item"><span class="tree-icon">📄</span> <code>style.css</code></div>
+                  <div class="tree-item"><span class="tree-icon">📄</span> <code>script.js</code></div>
+                  <div class="tree-item"><span class="tree-icon">📂</span> <code>assets/</code></div>
+                </div>
+              </details>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>LICENSE</code> <span class="tree-desc">MIT 开源许可证</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>README.md</code> <span class="tree-desc">项目说明文档</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>CONTRIBUTING.md</code> <span class="tree-desc">贡献指南</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>CHANGELOG.md</code> <span class="tree-desc">版本变更记录</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>FAQ.md</code> <span class="tree-desc">常见问题</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>AUTHORS</code> <span class="tree-desc">作者信息</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>.gitignore</code> <span class="tree-desc">Git 忽略规则</span></div>
+              <div class="tree-item"><span class="tree-icon">📄</span> <code>.gitattributes</code> <span class="tree-desc">Git 行尾规范</span></div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK START -->
+    <section id="quickstart" class="section">
+      <div class="section-header">
+        <span class="section-icon">🚀</span>
+        <h2 class="section-title">快速开始</h2>
+      </div>
+      <div class="card glass">
+        <h3 class="subsection-title">环境要求</h3>
+        <ul class="req-list">
+          <li>Windows 10/11</li>
+          <li>PowerShell 5.1 或更高版本（Windows 自带）</li>
+          <li>任意支持的浏览器（Chrome、Edge、Firefox、Brave、Opera、Tabbit）</li>
+        </ul>
+        <h3 class="subsection-title">运行方式</h3>
+        <div class="run-methods">
+          <div class="run-method">
+            <span class="method-tag recommended">推荐</span>
+            <h4>双击启动</h4>
+            <p>双击 <code>run.bat</code> 即可启动 GUI。</p>
+          </div>
+          <div class="run-method">
+            <span class="method-tag">命令行</span>
+            <h4>PowerShell 运行</h4>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <button class="copy-btn" data-code="powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1">复制</button>
+              </div>
+              <pre><code><span class="cmd">powershell</span> -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1</code></pre>
+            </div>
+          </div>
+        </div>
+        <h3 class="subsection-title">使用步骤</h3>
+        <div class="steps">
+          <div class="step"><span class="step-num">1</span><p>在浏览器中打开 BOSS 直聘，进入候选人/职位详情页</p></div>
+          <div class="step"><span class="step-num">2</span><p>运行 <code>run.bat</code> 启动程序</p></div>
+          <div class="step"><span class="step-num">3</span><p>设置 <strong>间隔时间</strong>（秒）和 <strong>最大次数</strong>（0 = 无限）</p></div>
+          <div class="step"><span class="step-num">4</span><p>点击 <strong>Start</strong> 开始自动浏览</p></div>
+          <div class="step"><span class="step-num">5</span><p>可随时点击 <strong>Pause</strong> 暂停，再次点击 <strong>Resume</strong> 恢复</p></div>
+          <div class="step"><span class="step-num">6</span><p>点击 <strong>Stop</strong> 停止并重置计数</p></div>
+        </div>
+        <div class="tip-box">
+          <strong>提示：</strong>需先打开一个候选人/职位详情页，右箭头键才能在候选人之间切换。
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="section-header">
+        <span class="section-icon">❓</span>
+        <h2 class="section-title">常见问题</h2>
+      </div>
+      <div class="card glass">
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>双击 run.bat 没反应或闪退？</summary>
+            <p>以管理员身份运行 PowerShell，执行 <code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code>，然后再双击 <code>run.bat</code>。</p>
+          </details>
+          <details class="faq-item">
+            <summary>提示 "无法加载文件，因为在此系统上禁止运行脚本"</summary>
+            <p>这是 PowerShell 执行策略限制。执行 <code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code> 解除。</p>
+          </details>
+          <details class="faq-item">
+            <summary>程序启动了但没有自动按键？</summary>
+            <p>确保：浏览器已打开且窗口没有最小化、已进入 BOSS 直聘候选人/职位详情页、点击了 Start 按钮、状态栏显示 Running。</p>
+          </details>
+          <details class="faq-item">
+            <summary>支持哪些浏览器？</summary>
+            <p>Chrome、Edge、Firefox、Brave、Opera、Tabbit。其他浏览器需在 <code>$allowedBrowsers</code> 数组中添加进程名。</p>
+          </details>
+          <details class="faq-item">
+            <summary>间隔时间最小可以设多少？</summary>
+            <p>可以设为小数（如 0.5 秒），但不建议低于 1 秒，否则浏览器可能来不及响应。</p>
+          </details>
+          <details class="faq-item">
+            <summary>最大次数设为 0 是什么意思？</summary>
+            <p>0 表示无限，会一直发送直到手动停止。设为正整数则发送对应次数后自动停止。</p>
+          </details>
+          <details class="faq-item">
+            <summary>工具会修改浏览器页面内容吗？</summary>
+            <p>不会。工具仅模拟键盘按键（右箭头），不注入任何 JavaScript 或修改 DOM。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANGELOG -->
+    <section id="changelog" class="section">
+      <div class="section-header">
+        <span class="section-icon">📋</span>
+        <h2 class="section-title">更新日志</h2>
+      </div>
+      <div class="card glass">
+        <div class="changelog">
+          <div class="cl-version">
+            <h3>[Unreleased]</h3>
+            <ul>
+              <li>新增 FAQ.md、AUTHORS、.gitattributes</li>
+              <li>新增 docs/ 可视化资产（banner、architecture、gui_preview SVG）</li>
+              <li>新增 docs/scripts/generate_assets.py SVG 生成脚本</li>
+              <li>README 新增徽章和可视化展示</li>
+              <li>CONTRIBUTING 新增 Commit 规范</li>
+              <li>新增 project_overview/ 全景观览页</li>
+            </ul>
+          </div>
+          <div class="cl-version">
+            <h3>[1.0.0] - 2026-09-01 <span class="cl-tag">首个版本</span></h3>
+            <ul>
+              <li>实现 GUI 界面，基于 System.Windows.Forms</li>
+              <li>支持定时自动发送右箭头键到浏览器</li>
+              <li>支持 6 种浏览器：Chrome、Edge、Firefox、Brave、Opera、Tabbit</li>
+              <li>智能窗口定位：优先匹配标题含 BOSS/zhipin 关键词</li>
+              <li>可配置间隔时间和最大发送次数</li>
+              <li>支持暂停 / 恢复 / 停止 / 关闭</li>
+              <li>实时日志列表，最多保留 200 条</li>
+              <li>Win32 API 窗口激活与焦点确认</li>
+              <li>提供 run.bat 双击启动器</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCS INDEX -->
+    <section id="docs" class="section">
+      <div class="section-header">
+        <span class="section-icon">📚</span>
+        <h2 class="section-title">文档索引</h2>
+      </div>
+      <div class="card glass">
+        <div class="doc-grid">
+          <a href="../README.md" class="doc-card">
+            <div class="doc-icon">📖</div>
+            <h4>README.md</h4>
+            <p>项目说明、功能特性、快速开始、技术实现</p>
+          </a>
+          <a href="../CONTRIBUTING.md" class="doc-card">
+            <div class="doc-icon">🤝</div>
+            <h4>CONTRIBUTING.md</h4>
+            <p>贡献流程、Commit 规范、代码规范、测试场景</p>
+          </a>
+          <a href="../CHANGELOG.md" class="doc-card">
+            <div class="doc-icon">📋</div>
+            <h4>CHANGELOG.md</h4>
+            <p>版本变更记录，遵循语义化版本规范</p>
+          </a>
+          <a href="../FAQ.md" class="doc-card">
+            <div class="doc-icon">❓</div>
+            <h4>FAQ.md</h4>
+            <p>运行问题、浏览器支持、功能问答</p>
+          </a>
+          <a href="../LICENSE" class="doc-card">
+            <div class="doc-icon">📄</div>
+            <h4>LICENSE</h4>
+            <p>MIT 开源许可证</p>
+          </a>
+          <a href="../AUTHORS" class="doc-card">
+            <div class="doc-icon">✍️</div>
+            <h4>AUTHORS</h4>
+            <p>作者信息与贡献者</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTRIBUTING & LICENSE -->
+    <section id="contributing" class="section">
+      <div class="section-header">
+        <span class="section-icon">🤝</span>
+        <h2 class="section-title">贡献与许可</h2>
+      </div>
+      <div class="card glass">
+        <div class="contrib-grid">
+          <div class="contrib-col">
+            <h3 class="subsection-title">如何贡献</h3>
+            <p>项目很小，但欢迎提交 Issue 和 Pull Request。</p>
+            <ul class="req-list">
+              <li>Fork 仓库 → 创建分支 → 修改代码 → 提交 PR</li>
+              <li>Commit 规范：<code>feat:</code> / <code>fix:</code> / <code>docs:</code> / <code>refactor:</code></li>
+              <li>函数名使用 <code>Verb-Noun</code> 格式</li>
+              <li>变量名使用 camelCase，脚本级变量用 <code>$script:</code> 前缀</li>
+            </ul>
+          </div>
+          <div class="contrib-col">
+            <h3 class="subsection-title">开源许可</h3>
+            <p>本项目基于 <strong>MIT License</strong> 开源，可自由使用、修改和分发。</p>
+            <p>Copyright (c) 2026 <strong>LPK3215</strong></p>
+            <div class="author-box">
+              <div class="author-info">
+                <span class="author-name">LPK3215</span>
+                <a href="https://github.com/LPK3215" class="author-link">@LPK3215</a>
+                <span class="author-email">17538703215@163.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box disclaimer">
+          <strong>免责声明：</strong>本项目仅供学习和个人使用。使用者需自行承担使用风险，请遵守 BOSS 直聘的相关服务条款。作者不对因使用本工具而产生的任何后果承担责任。
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="back-to-top" title="返回顶部">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <!-- Architecture Tooltip -->
+  <div id="archTooltip" class="arch-tooltip"></div>
+
+  <footer class="footer">
+    <p>BOSS Auto Browse · Open Source Toy · MIT License · 2026</p>
+    <p>Generated by CatPaw AI · <a href="https://github.com/LPK3215/boss_auto_browse">GitHub</a></p>
+  </footer>
+
+  <script src="./script.js"></script>
+  <!-- Generated: 2026-09-06 · Tool: CatPaw AI -->
+</body>
+</html>

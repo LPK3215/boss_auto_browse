@@ -10,6 +10,14 @@
 _compare*.ps1
 _extract*.ps1
 _final_verify*.ps1
+_release_notes.txt
+
+# PowerShell
+*.ps1.bak
+~*.ps1
+
+# Logs
+*.log
 
 # IDE
 .vscode/

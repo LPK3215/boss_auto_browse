@@ -53,12 +53,16 @@ powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1
 ```
 boss_auto_browse/
 ├── boss_auto_browse_gui.ps1  # 主程序源码（PowerShell GUI 脚本）
+├── boss_auto_browse_gui.exe   # 编译版可执行文件
 ├── run.bat                    # 双击启动器
 ├── LICENSE                    # MIT 开源许可证
 ├── README.md                  # 项目说明文档
 ├── CONTRIBUTING.md            # 贡献指南
 ├── CHANGELOG.md               # 版本变更记录
-└── .gitignore                 # Git 忽略规则
+├── FAQ.md                     # 常见问题
+├── AUTHORS                    # 作者信息
+├── .gitignore                 # Git 忽略规则
+└── .gitattributes             # Git 行尾规范
 ```
 
 ## 技术实现
@@ -82,6 +86,10 @@ boss_auto_browse/
 ## 开源许可
 
 本项目基于 [MIT License](LICENSE) 开源，可自由使用、修改和分发。
+
+## 常见问题
+
+见 [FAQ.md](FAQ.md)。
 
 ## 贡献
 

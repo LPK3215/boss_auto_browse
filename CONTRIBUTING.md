@@ -20,7 +20,14 @@
    powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1
    ```
 5. 提交 Commit，信息清晰描述改动内容
-6. 发起 Pull Request，关联相关 Issue
+6. 发起 Pull Request，标题格式：`[feat]` / `[fix]` / `[docs]` + 简述
+
+## Commit 规范
+
+- `feat:` 新功能（如 `feat: add keyboard shortcut support`）
+- `fix:` bug 修复（如 `fix: timer not stopping on close`）
+- `docs:` 文档更新（如 `docs: update FAQ`）
+- `refactor:` 重构（如 `refactor: simplify window detection logic`）
 
 ## 代码规范
 

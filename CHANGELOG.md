@@ -2,6 +2,17 @@
 
 本项目版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/) 规范。
 
+## [Unreleased]
+
+### 新增
+
+- 新增 FAQ.md 常见问题文档
+- 新增 AUTHORS 作者信息文件
+- 新增 .gitattributes 行尾规范
+- README 项目结构树补充完整文件列表
+- CONTRIBUTING 新增 Commit 规范和 PR 标题格式
+- .gitignore 补充 PowerShell 临时文件和日志文件规则
+
 ## [1.0.0] - 2026-09-01
 
 ### 首次发布

@@ -65,3 +65,40 @@ $allowedBrowsers = @("chrome", "msedge", "firefox", "brave", "opera", "Tabbit")
 ### 工具会修改浏览器页面内容吗？
 
 不会。工具仅模拟键盘按键（右箭头），不注入任何 JavaScript 或修改 DOM。所有操作都是系统级的按键发送。
+
+## 编译与安全
+
+### 如何从源码编译 exe？
+
+本项目提供的 `boss_auto_browse_gui.exe` 是通过 [PS2EXE](https://github.com/MScholtes/PS2EXE) 将 PowerShell 脚本打包为可执行文件的。如需自行编译：
+
+```powershell
+# 安装 PS2EXE 模块
+Install-Module -Name ps2exe -Scope CurrentUser
+
+# 编译
+Invoke-PS2EXE -Input .\boss_auto_browse_gui.ps1 -Output .\boss_auto_browse_gui.exe -NoConsole
+```
+
+### 杀毒软件/Windows Defender 报毒怎么办？
+
+由于 `boss_auto_browse_gui.exe` 是由 PowerShell 脚本打包生成，部分杀毒软件可能误报。解决方法：
+
+1. **使用源码运行**：直接运行 `boss_auto_browse_gui.ps1`，不走 exe
+2. **添加信任**：在杀毒软件中将 `boss_auto_browse_gui.exe` 添加到信任列表
+3. **自行编译**：按上文步骤从源码自行编译，增强可信度
+
+### 可以同时运行多个实例吗？
+
+技术上可以，但不建议。多个实例会同时发送按键，可能导致目标浏览器窗口反复切换。如果需要在不同浏览器中使用，建议错开间隔时间或分时运行。
+
+### 程序闪退或没有界面？
+
+可能是 PowerShell 环境问题。尝试：
+
+1. 用 `run.bat` 启动（已包含 `-ExecutionPolicy Bypass`）
+2. 在 PowerShell 中手动运行脚本，查看报错信息：
+   ```powershell
+   powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1
+   ```
+3. 确保 `.NET Framework` 可用（`System.Windows.Forms` 依赖它）

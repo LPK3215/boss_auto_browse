@@ -10,6 +10,7 @@
   <a href="https://github.com/LPK3215/boss_auto_browse"><img src="https://img.shields.io/badge/platform-Windows-0078D4" alt="Platform" /></a>
   <a href="https://github.com/LPK3215/boss_auto_browse"><img src="https://img.shields.io/badge/lang-PowerShell-013755" alt="Language" /></a>
   <a href="https://github.com/LPK3215/boss_auto_browse"><img src="https://img.shields.io/badge/type-Open%20Source%20Toy-6c5ce7" alt="Type" /></a>
+  <a href="https://github.com/LPK3215/boss_auto_browse/stargazers"><img src="https://img.shields.io/github/stars/LPK3215/boss_auto_browse?style=flat&color=yellow" alt="Stars" /></a>
 </p>
 
 > 给女朋友做的一个便捷小工具，定时向浏览器发送右箭头键，自动切换 BOSS 直聘候选人卡片。
@@ -74,6 +75,11 @@ powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1
 
 > **提示**：需先打开一个候选人/职位详情页，右箭头键才能在候选人之间切换。
 
+## 可视化文档
+
+- **[全景观览页](project_overview.html)** — 沉浸式项目仪表盘，双击打开即可在浏览器中俯瞰项目全貌
+- **[项目名片](project_overview/project_card.html)** — 精简版长图名片，一键导出 PNG 分享给他人
+
 ## 项目结构
 
 ```
@@ -87,6 +93,13 @@ boss_auto_browse/
 │   ├── gui_preview.svg        # GUI 界面示意图
 │   └── scripts/
 │       └── generate_assets.py # SVG 生成脚本（可复用）
+├── project_overview.html       # 全景观览页入口
+├── project_overview/
+│   ├── index.html              # 全景观览页
+│   ├── style.css               # 全景观览页样式
+│   ├── script.js               # 全景观览页交互
+│   ├── project_card.html       # 精简版名片长图（可导出 PNG）
+│   └── assets/                 # 外部资源目录
 ├── LICENSE                    # MIT 开源许可证
 ├── README.md                  # 项目说明文档
 ├── CONTRIBUTING.md            # 贡献指南

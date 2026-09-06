@@ -12,7 +12,7 @@
 ## 提交 Pull Request
 
 1. Fork 本仓库
-2. 创建分支：`git checkout -b feature/your-feature-name`
+2. 创建分支（命名规范见下方）
 3. 修改代码，确保逻辑正确
 4. 如果修改了 `boss_auto_browse_gui.ps1`，请通过以下方式验证：
    ```powershell
@@ -20,14 +20,27 @@
    powershell -ExecutionPolicy Bypass -NoProfile -File boss_auto_browse_gui.ps1
    ```
 5. 提交 Commit，信息清晰描述改动内容
-6. 发起 Pull Request，标题格式：`[feat]` / `[fix]` / `[docs]` + 简述
+6. 发起 Pull Request，标题格式：`[feat]` / `[fix]` / `[docs]` / `[chore]` + 简述
+
+### 分支命名规范
+
+| 前缀 | 用途 | 示例 |
+|------|------|------|
+| `feature/` | 新功能 | `feature/add-hotkey-support` |
+| `fix/` | Bug 修复 | `fix/timer-not-stopping` |
+| `docs/` | 文档更新 | `docs/update-faq` |
+| `chore/` | 构建/配置 | `chore/update-gitignore` |
 
 ## Commit 规范
 
-- `feat:` 新功能（如 `feat: add keyboard shortcut support`）
-- `fix:` bug 修复（如 `fix: timer not stopping on close`）
-- `docs:` 文档更新（如 `docs: update FAQ`）
-- `refactor:` 重构（如 `refactor: simplify window detection logic`）
+| 类型 | 说明 | 示例 |
+|------|------|------|
+| `feat:` | 新功能 | `feat: add keyboard shortcut support` |
+| `fix:` | Bug 修复 | `fix: timer not stopping on close` |
+| `docs:` | 文档更新 | `docs: update FAQ` |
+| `refactor:` | 重构（不改功能） | `refactor: simplify window detection logic` |
+| `chore:` | 构建/配置/依赖 | `chore: update .gitignore rules` |
+| `style:` | 格式调整 | `style: indent fix in main script` |
 
 ## 代码规范
 
@@ -47,10 +60,12 @@
 
 - [ ] 无浏览器时启动，日志提示正常
 - [ ] 有浏览器但无 BOSS 标题，能 fallback 到任意浏览器
+- [ ] 多个浏览器同时打开时，优先激活 BOSS 相关窗口
 - [ ] Start → Pause → Resume 流程正常
 - [ ] Stop 能正确重置计数
 - [ ] 设置最大次数后达到上限自动停止
 - [ ] 关闭窗口时 Timer 正确停止
+- [ ] 间隔时间设为小数（如 0.5 秒）时运行稳定
 
 ## 行为准则
 
